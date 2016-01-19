@@ -1,0 +1,129 @@
+
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	
+	<div class="container" ng-controller="MenuController">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#/home">Home</a>
+		</div>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li>
+					<a href="#/login">Login</a>
+				</li>
+				<li>
+					<a href="#/register">Cadastre-se</a>
+				</li>
+			</ul>
+		</div>
+		<!-- /.navbar-collapse -->
+	</div>
+	<!-- /.container -->
+</nav>
+
+
+<div class="container">
+
+	<div class="row">
+
+		<div class="col-md-12">
+			
+			<!--column left-->
+			
+			<form name="userRegisterForm" ng-submit="register()" >
+				<br />
+				
+				<!--column left-->
+				<div class="col-sm-6">
+				
+					<h3>Informações pessoais</h3>
+			
+					<div class="form-group">
+						<label>Nome</label>
+						<input type="text" name="name" class="form-control" required ng-model="user.name">
+					</div>
+					<div class="form-group">
+						<label>Cpf</label>
+						<input type="text" name="cpf" class="form-control" placeholder="CPF (somente números)" maxlength="11" pattern="^[0-9]{11}$" required ng-model="user.cpf">
+					</div>
+					<div class="form-group">
+						<label>Data de Nascimento</label>
+						<input type="text" name="birthDate" class="form-control" maxlength="10" pattern="^(((0[1-9]|[12]\d|3[01])/(0[13578]|1[02])/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)/(0[13456789]|1[012])/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])/02/((19|[2-9]\d)\d{2}))|(29/02/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$"
+							placeholder="Data de Nascimento (dd/mm/aaaa)" required ng-model="user.birthDate">  
+					</div>
+					<div class="form-group">
+						<label>Sexo</label> <br/>
+						<input type="radio" name="gender" value="m" ng-model="user.gender" checked>Masculino<br>
+						<input type="radio" name="gender" value="f" ng-model="user.gender">Feminino<br>
+					</div>
+					
+				</div><!--col-sm-6-->
+				
+				<!--column right-->
+				<div class="col-sm-6">
+				
+					<h3>Informações de endereço</h3>
+					
+					<div class="form-group">
+						<label>Estado</label>
+						<input type="text" name="state" class="form-control" required ng-model="user.state">
+					</div>
+					<div class="form-group">
+						<label>Cidade</label>
+						<input type="text" name="city" class="form-control" required ng-model="user.city"> 
+					</div>
+					<div class="form-group">
+						<label>Bairro</label>
+						<input type="text" name="neighborhood" class="form-control" required ng-model="user.neighborhood">
+					</div>
+					<div class="form-group">
+						<label>Rua</label>
+						<input type="text" name="street" class="form-control" required ng-model="user.street">
+					</div>
+
+				</div><!--col-sm-6-->
+				
+				<br />
+				
+				<div class="col-sm-12">
+					<h3>Informações para login</h3>
+					
+					<div class="form-group">
+						<label>Email</label>
+						<input type="email" name="email"  class="form-control" required ng-model="user.email">
+					</div>
+					<div class="form-group">
+						<label>Senha</label>
+						<input type="password" name="password" class="form-control" required ng-model="user.password"> 
+					</div>
+					<div class="form-group">
+						<label>Confirmar Senha</label>
+						<input type="password" class="form-control" required compare-to="user.password"> 
+					</div>
+				
+					<button type="submit" class="btn btn-default">Cadastrar</button>
+					
+					<div ng-show="showLoading">
+						<img src="img/carregando.gif" />
+					</div>
+					
+				</div>
+				
+			</form>
+			
+		</div>
+		
+	</div>
+</div>
+
+</body>
+
+</html>

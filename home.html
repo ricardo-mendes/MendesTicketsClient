@@ -1,0 +1,99 @@
+
+<style>
+
+	.hero-feature img
+	{
+		height: 150px;
+	}
+
+</style>
+
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	
+	<div class="container" ng-controller="MenuController">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#/home">Home</a>
+		</div>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		
+			<ul class="nav navbar-nav" ng-if="!userIsAuthenticated">
+				<li>
+					<a href="#/login">Login</a>
+				</li>
+				<li>
+					<a href="#/register">Cadastre-se</a>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav" ng-if="userIsAuthenticated">
+				<li>
+					<a href="#" ng-click="deleteAccessToken()">Sair</a>
+				</li>
+			</ul>
+			
+		</div>
+		<!-- /.navbar-collapse -->
+	</div>
+	<!-- /.container -->
+</nav>
+
+
+<div class="container">
+
+	<!-- Jumbotron Header -->
+	<header class="jumbotron hero-spacer">
+		<h3>Seja Bem-Vindo!</h1>
+	</header>
+
+	<hr>
+
+	<!-- Title -->
+	<div class="row">
+		<div class="col-lg-12">
+			<h3>Filmes</h3>
+		</div>
+	</div>
+	<!-- /.row -->
+
+	
+	<!-- Page Features -->
+	<div class="row text-center">
+
+		<div class="col-md-3 col-sm-6 hero-feature" ng-repeat="event in events">
+			<div class="thumbnail">
+				<img ng-src="{{event.image}}" alt="" max-height="80px">
+				<div class="caption">
+					<h3>{{event.title}}.</h3>
+					<p>{{event.description}}.</p>
+					<p ng-if="!userIsAuthenticated">
+						<a href="#/login" class="btn btn-primary">Comprar!</a> 
+					</p>
+					<p ng-if="userIsAuthenticated">
+						<a href="#/purchase/{{event.price}}" class="btn btn-primary">Comprar!</a> 
+						<br/><br/>
+						<button class="btn btn-default" ng-click="makePaymentWithCreditCardToken(event.price)">Comprar com cartão salvo!</button> 
+					</p>
+				</div>
+			</div>
+		</div>
+		
+		<div ng-show="showLoading">
+			<img src="img/carregando.gif" />
+		</div>
+		
+
+	</div>
+	<!-- /.row -->
+
+</div>
+
+        
+    

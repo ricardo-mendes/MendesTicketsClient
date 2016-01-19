@@ -1,0 +1,109 @@
+
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	
+	<div class="container" ng-controller="MenuController">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#/home">Home</a>
+		</div>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li>
+					<a href="#" ng-click="deleteAccessToken()">Sair</a>
+				</li>
+			</ul>
+		</div>
+		<!-- /.navbar-collapse -->
+	</div>
+	<!-- /.container -->
+</nav>
+
+
+<div class="container">
+
+	<div class="row">
+
+		<div class="span12">
+			
+			<h3>Entre com os dados do cartão de crédito</h3>
+			
+			<form ng-submit="makePayment()">
+				
+				<br/>
+				
+				<h4>Valor {{purchaseInfo.amountInCents | currency}}</h4>
+				<hr/>
+				<div class="form-group">
+					<label>Titular</label>
+					<input type="text" class="form-control" ng-model="purchaseInfo.holderName"  required />
+				</div>
+				<div class="form-group">
+					<label>Número do cartão</label>
+					<input type="text" class="form-control" ng-model="purchaseInfo.creditCardNumber" placeholder="Somente números" maxlength="16" pattern="^[0-9]{16}$" required />
+				</div>
+				<div class="form-group">
+					<label>Código de Segurança</label>
+					<input type="text" class="form-control" ng-model="purchaseInfo.securityCode" maxlength="3" pattern="^[0-9]{3}$" required />
+				</div>
+				<div class="form-group">
+					<label>Bandeira</label>
+					<select ng-model="purchaseInfo.creditCardBrand" required>
+						<option value="1">Visa</option>
+						<option value="2">Mastercard</option>
+						<option value="3">Hipercard</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label>Mês</label>
+					<select ng-model="purchaseInfo.expMonth" required>
+						<option value="1">01</option>
+						<option value="2">02</option>
+						<option value="3">03</option>
+						<option value="4">04</option>
+						<option value="5">05</option>
+						<option value="6">06</option>
+						<option value="7">07</option>
+						<option value="8">08</option>
+						<option value="9">09</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+						<option value="12">12</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label>Ano</label>
+					<select ng-model="purchaseInfo.expYear" required>
+						<option value="2016">2016</option>
+						<option value="2017">2017</option>
+						<option value="2018">2018</option>
+						<option value="2019">2019</option>
+						<option value="2020">2020</option>
+						<option value="2021">2021</option>
+						<option value="2022">2022</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label>Salvar cartao
+						<input type="checkbox" ng-model="purchaseInfo.isSavingCreditCardInToken" />
+					</label>
+				</div>
+				<button type="submit" class="btn btn-default">Efetuar compra</button>
+				
+				<div ng-show="showLoading">
+					<img src="img/carregando.gif" />
+				</div>
+				
+			</form>
+			
+		</div>
+		
+	</div>
+</div>
